@@ -2,75 +2,82 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, Text, FlatList, Pressable, View, Image, TextInput, } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { db } from "../FirebaseApp"
-import { collection, query, where, getDocs, orderBy, deleteDoc, doc } from "firebase/firestore";
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
-const AppointmentScreen = ({ navigation, route }) => {
+import { collection, getDocs } from "firebase/firestore";
+
+const Medicine2Screen = ({ navigation, route }) => {
     const [search, setSearch] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
     const [masterDataSource, setMasterDataSource] = useState([]);
 
-    const { u_id } = route.params;
-
-
     useEffect(() => {
-        getVetList()
-        //setFilteredDataSource(vets);
-        //setMasterDataSource(vets);
+        getMedList()
+        // setFilteredDataSource(meds);
+        // setMasterDataSource(meds);
     }, []);
 
-    const getVetList = async () => {
+    const onSelectedMed = data => {
+        var count = 0;
+        for (const [key, value] of Object.entries(data)) {
+            var id;
+            var name;
+            for (const [key2, value2] of Object.entries(value)) {
+                if (count == 0) { id = value2; }
+                else if (count == 1) { name = value2; }
+                count = count + 1;
+            }
+            sendMedData(id, name);
+        }
+    };
+
+    const sendMedData = (id, name) => {
+        const medData = {
+            id: id,
+            name: name,
+           description: null,
+        }
+        route.params.onSelect({ selectedMed: medData });
+        navigation.goBack();
+    }
+
+    const getMedList = async () => {
         try {
-
-
-            const docRef = query(collection(db, "appointment"), where("doctor", "==",u_id));
-            const querySnapshot = await getDocs(docRef);
-            const documents = querySnapshot.docs;
-
-
+            let querySnapshot = await getDocs(collection(db, "medicine"));
+            let documents = querySnapshot.docs
             setFilteredDataSource(documents);
             setMasterDataSource(documents);
         } catch (err) {
-            //console.log(`${documents.id}`)    
+            console.log(`${documents.id}`)
             console.log(`${err.message}`)
         }
     }
 
-    const deleteRecord = async (id) => {
-        await deleteDoc(doc(db, "appointment", id))
-            .then(console.log("removed"))
-            .catch((err) => {
-                console.log(err.message);
-                onErrorChanged(err.message);
-                onHasErrorChanged(true);
-            });
-        navigation.pop(1);
+    const medSelected = (med) => {
+        const medData = {
+            id: med.id,
+            name: med.data().name,
+            description: med.data().description
+        }
+        route.params.onSelect({ selectedMed: medData });
+        navigation.goBack();
     }
 
-
     const renderItem = ({ item }) => (
-        <Pressable onPress={() => { }
+        <Pressable onPress={() => {
+            //maybe add navigation for details (not yet confirmed)
+            medSelected(item);
+        }
         }>
-            <View style={styles.vet}>
+            <View style={styles.med}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexShrink: 1 }}>
-                    <Image source={require('../assets/app_logo.png')} style={styles.img} />
+                    <Image source={require('../assets/physical-examination-1.png')} style={styles.img} />
                     <View style={{ flexDirection: 'column', marginLeft: 20, alignItems: 'baseline', flexShrink: 1 }}>
-
-                        <Text style={{ fontSize: 14 }}>{item.data().vet_name}</Text>
-                        <Text style={{ fontSize: 14 }}>{item.data().fecha}</Text>
-                        <Text style={{ fontSize: 14 }}>{item.data().time}</Text>
+                        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.data().name}</Text>
+                        <Text style={{ fontSize: 14 }}>{item.data().description}</Text>
+                
                     </View>
-
-                    <Pressable onPress={() => {
-                        deleteRecord(item.id)
-                    }}>
-                        <MaterialCommunityIcons name="account-check" size={24} color='#008000' />
-
-                    </Pressable>
-
                 </View>
-                {/*<AntDesign name="right" size={20} color='#336C67' style={{marginRight:22}}/>*/}
+                <AntDesign name="right" size={20} color='#335C67' style={{ marginRight: 22 }} />
             </View>
-
         </Pressable>
     );
 
@@ -108,15 +115,12 @@ const AppointmentScreen = ({ navigation, route }) => {
                 underlineColorAndroid="transparent"
                 placeholder="Search Here"
             />
-            <View style={styles.addVetView}>
-                <Text
-                    onPress={() => navigation.navigate("AddTime", { u_id: u_id })}
-                    style={styles.addVetText}>Registrar nuevos horarios de atención
-                </Text>
-
-
-            </View>
-
+            {/*<View style={styles.addMedView}>
+                <Text  
+                    onPress={() => navigation.navigate("AddMedClinicsScreen", {onSelect: onSelectedMed})} 
+                    style={styles.addMedText}>Registrar nueva mederinaria
+                </Text> 
+    </View>*/}
             <FlatList
                 data={filteredDataSource}
                 keyExtractor={item => item.id}
@@ -132,7 +136,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
     },
-    vet: {
+    med: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 15,
@@ -143,7 +147,7 @@ const styles = StyleSheet.create({
         marginLeft: 22,
         width: 60,
         height: 60,
-        borderRadius: '80%',
+        borderRadius: '100%',
         borderWidth: 1,
         borderColor: 'black',
     },
@@ -157,7 +161,7 @@ const styles = StyleSheet.create({
         borderColor: '#009688',
         backgroundColor: '#FFFFFF',
     },
-    addVetText: {
+    addMedText: {
         alignSelf: 'center',
         color: '#335C67',
         fontWeight: 'bold',
@@ -167,9 +171,9 @@ const styles = StyleSheet.create({
         textDecorationColor: "#335C67",
         marginTop: 5
     },
-    addVetView: {
+    addMedView: {
         padding: 10
     }
 });
 
-export default AppointmentScreen;
+export default Medicine2Screen;

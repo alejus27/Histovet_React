@@ -41,6 +41,7 @@ import DeleteCaregiverScreen from './screens/DeleteCaregiverScreen';
 import { Pressable, Alert, Image } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import ShowHistoryScreen from './screens/ShowHistoryScreen';
+import Medicine2Screen from './screens/Medicine2Screen';
 import AppointmentScreen from './screens/AppointmentScreen';
 import ShowHistoryScreen2 from './screens/ShowHistoryScreen2';
 import ShowHospitalizationScreen from './screens/ShowHospitalizationScreen';
@@ -68,7 +69,8 @@ const AuthenticationNavigator = ({ navigation }) => {
             <Stack.Screen name="ResetPassword" component={ResetPasswordScreen_v2} options={{ title: 'Restablecer contraseña' }} />
             <Stack.Screen name="MainNavigator" component={MainNavigator} options={{ header: () => null }} />
 
-            <Stack.Screen name="VetsScreen" component={VetsScreen} options={{ title: 'CENTRO VETERINARIO' }} />
+            <Stack.Screen name="VetsScreen" component={VetsScreen} options={{ title: 'Centro veterinario' }} />
+            <Stack.Screen name="AddVetClinicsScreen" component={AddVetClinicsScreen} options={{ title: 'Registrar centro veterinario' }} />
         </Stack.Navigator>
     )
 }
@@ -86,7 +88,7 @@ const MainNavigator = ({ navigation }) => {
             },
 
         }}>
-            <Stack.Screen name="PetsScreen" component={PetsScreen} options={{ title: 'MENÚ' }} />
+            <Stack.Screen name="PetsScreen" component={PetsScreen} options={{ title: 'Menú' }} />
             <Stack.Screen name="PetProfileScreen" component={PetProfileScreen} />
             <Stack.Screen name="PetSettingScreen" component={PetSettingScreen} options={{ title: 'Pet Settings' }} />
             <Stack.Screen name="Settings" component={SettingScreen} options={{
@@ -118,36 +120,37 @@ const MainNavigator = ({ navigation }) => {
                     </Pressable>
                 )
             }} />
-            <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{ title: 'INFORMACIÓN DE CUENTA' }} />
-            <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} options={{ title: 'CAMBIAR CONTRASEÑA' }} />
+            <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} options={{ title: 'Información de cuenta' }} />
+            <Stack.Screen name="ChangePasswordScreen" component={ChangePasswordScreen} options={{ title: 'Cambiar contraseña' }} />
             <Stack.Screen name="CheckMailScreen" component={CheckMailScreen} />
             <Stack.Screen name="CreateNewPasswordScreen" component={CreateNewPasswordScreen} />
-            <Stack.Screen name="DeleteAccountScreen" component={DeleteAccountScreen} options={{ title: 'BORRAR CUENTA' }} />
-            <Stack.Screen name="EditAddressScreen" component={EditAddressScreen} options={{ title: 'INFORMACIÓN DE DIRECCIÓN' }} />
-            <Stack.Screen name="CreateHospitalization" component={CreateHospitalization} options={{ title: 'HOSPITALIZACIÓN' }} />
-            <Stack.Screen name="CreateClinicalHistory" component={CreateClinicalHistory} options={{ title: 'HISTORIA CLINICA' }} />
-            <Stack.Screen name="CreatePetProfile" component={CreatePetProfile} options={{ title: 'REGISTRAR MASCOTA' }} />
-            <Stack.Screen name="CreatePetProfile2Screen" component={CreatePetProfile2Screen} options={{ title: 'REGISTRAR MASCOTA' }} />
-            <Stack.Screen name="VetsScreen" component={VetsScreen} options={{ title: 'CENTRO VETERINARIO' }} />
-            <Stack.Screen name="VetsScreen2" component={VetsScreen2} options={{ title: 'CENTRO VETERINARIO' }} />
+            <Stack.Screen name="DeleteAccountScreen" component={DeleteAccountScreen} options={{ title: 'Borrar cuenta' }} />
+            <Stack.Screen name="EditAddressScreen" component={EditAddressScreen} options={{ title: 'Información de dirección' }} />
+            <Stack.Screen name="CreateHospitalization" component={CreateHospitalization} options={{ title: 'Hospitalización' }} />
+            <Stack.Screen name="CreateClinicalHistory" component={CreateClinicalHistory} options={{ title: 'Historia clinica' }} />
+            <Stack.Screen name="CreatePetProfile" component={CreatePetProfile} options={{ title: 'Registrar mascota' }} />
+            <Stack.Screen name="CreatePetProfile2Screen" component={CreatePetProfile2Screen} options={{ title: 'Registrar mascota' }} />
+            <Stack.Screen name="VetsScreen" component={VetsScreen} options={{ title: 'Centro veterinario' }} />
+            <Stack.Screen name="VetsScreen2" component={VetsScreen2} options={{ title: 'Centro veterinario' }} />
             <Stack.Screen name="Vaccinations" component={PetHistoryScreenNavigator} />
             <Stack.Screen name="ManageCaregiverScreen" component={ManageCaregiverScreen} options={{ title: 'Manage Caregiver' }} />
-            <Stack.Screen name="AddVetClinicsScreen" component={AddVetClinicsScreen} options={{ title: 'REGISTRAR CENTRO VETERINARIO' }} />
-            <Stack.Screen name="AddVetClinicsScreen2" component={AddVetClinicsScreen2} options={{ title: 'REGISTRAR CENTRO VETERINARIO' }} />
+            <Stack.Screen name="AddVetClinicsScreen" component={AddVetClinicsScreen} options={{ title: 'Registrar centro veterinario' }} />
+            <Stack.Screen name="AddVetClinicsScreen2" component={AddVetClinicsScreen2} options={{ title: 'Registrar centro veterinario' }} />
             <Stack.Screen name="AddCaregiverScreen" component={AddCaregiverScreen} options={{ title: 'Add Caregiver' }} />
-            <Stack.Screen name="AddTime" component={AddTime} options={{ title: 'Add Time' }} />
-            <Stack.Screen name="UploadNewScreen" component={UploadNewScreen} options={{ title: 'IMPORTAR HISTORIAL MÉDICO' }} />
+            <Stack.Screen name="AddTime" component={AddTime} options={{ title: 'Horario' }} />
+            <Stack.Screen name="UploadNewScreen" component={UploadNewScreen} options={{ title: 'Importar registro médico' }} />
             <Stack.Screen name="ShareMedicalRecordScreen" component={ShareMedicalRecordScreen} options={{ title: 'Share Medical Record' }} />
-            <Stack.Screen name="EditPetScreen-1" component={EditPetScreen_1} options={{ title: 'EDITAR MASCOTA' }} />
-            <Stack.Screen name="EditPetScreen-2" component={EditPetScreen_2} options={{ title: 'EDITAR MASCOTA' }} />
-            <Stack.Screen name="EditClinicalHistory" component={EditClinicalHistory} options={{ title: 'EDITAR HISTORIA CLINICA' }} />
-            <Stack.Screen name="DeletePetScreen" component={DeletePetScreen} options={{ title: 'BORRAR MASCOTA' }} />
-            <Stack.Screen name="AddMedicine" component={AddMedicine} options={{ title: 'REGISTRAR MEDICAMENTO' }} />
-            <Stack.Screen name="MedicineScreen" component={MedicineScreen} options={{ title: 'INVENTARIO' }} />
-            <Stack.Screen name="AppointmentScreen" component={AppointmentScreen} options={{ title: 'CITAS MÉDICAS' }} />
-            <Stack.Screen name="ShowHospitalizationScreen" component={ShowHospitalizationScreen} options={{ title: 'HOSPITALIZACIÓN' }} />
-            <Stack.Screen name="ShowHistoryScreen" component={ShowHistoryScreen} options={{ title: 'HISTORIA CLINICA' }} />
-            <Stack.Screen name="ShowHistoryScreen2" component={ShowHistoryScreen2} options={{ title: 'BORRAR HISTORIA CLINICA' }} />
+            <Stack.Screen name="EditPetScreen-1" component={EditPetScreen_1} options={{ title: 'Editar mascota' }} />
+            <Stack.Screen name="EditPetScreen-2" component={EditPetScreen_2} options={{ title: 'Editar mascota' }} />
+            <Stack.Screen name="EditClinicalHistory" component={EditClinicalHistory} options={{ title: 'Editar historia clinica' }} />
+            <Stack.Screen name="DeletePetScreen" component={DeletePetScreen} options={{ title: 'Borrar mascota' }} />
+            <Stack.Screen name="AddMedicine" component={AddMedicine} options={{ title: 'Medicamentos' }} />
+            <Stack.Screen name="MedicineScreen" component={MedicineScreen} options={{ title: 'Inventario' }} />
+            <Stack.Screen name="Medicine2Screen" component={Medicine2Screen} options={{ title: 'Medicamentos' }} />
+            <Stack.Screen name="AppointmentScreen" component={AppointmentScreen} options={{ title: 'Citas Médicas' }} />
+            <Stack.Screen name="ShowHospitalizationScreen" component={ShowHospitalizationScreen} options={{ title: 'Hospitalización' }} />
+            <Stack.Screen name="ShowHistoryScreen" component={ShowHistoryScreen} options={{ title: 'Historia clinica' }} />
+            <Stack.Screen name="ShowHistoryScreen2" component={ShowHistoryScreen2} options={{ title: 'Borrar historia clinica' }} />
             <Stack.Screen name="DeleteMedicalRecordsScreen" component={DeleteMedicalRecordsScreen} options={{ title: 'Delete Medical Record' }} />
             <Stack.Screen name="TransferPetOwnership" component={TransferOwnershipScreen} options={{ title: 'Transfer Ownership' }} />
             <Stack.Screen name="DeleteCaregiver" component={DeleteCaregiverScreen} options={{ title: 'Remove Caregiver' }} />

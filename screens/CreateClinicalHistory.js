@@ -145,7 +145,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Estado reproductivo *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el estado reproductivo de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onStatusChanged}
@@ -155,7 +155,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Número de partos *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el número de partos de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onBirthChanged}
@@ -174,7 +174,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
                 dropdownItemStyles={styles.input}
                 dropdownStyles={{ borderColor: 'transparent' }}
                 maxHeight='100'
-                placeholder=" "
+                placeholder="Ingrese si la mascota tiene la vacunación vigente"
             />
 
             <Text style={styles.text}>Desparasitación vigente *</Text>
@@ -186,7 +186,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
                 dropdownItemStyles={styles.input}
                 dropdownStyles={{ borderColor: 'transparent' }}
                 maxHeight='100'
-                placeholder=" "
+                placeholder="Ingrese si la mascota tiene la desparacitación vigente"
             />
 
             <Text style={styles.text}>Control de ectoparásitos vigente *</Text>
@@ -198,14 +198,14 @@ const CreateClinicalHistory = ({ navigation, route }) => {
                 dropdownItemStyles={styles.input}
                 dropdownStyles={{ borderColor: 'transparent' }}
                 maxHeight='100'
-                placeholder=" "
+                placeholder="Ingrese si la mascota tiene el control de desparacitación vigente"
             />
 
 
             <Text style={styles.text}>Tipo de dieta *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el tipo de dieta que tiene actualmente la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onDietChange}
@@ -215,7 +215,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Motivo de consulta *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el motivo de la consulta"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onReasonChanged}
@@ -226,7 +226,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Enfermedades anteriores *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese las enfermedades anteriores que ha tenido la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onIllnessChanged}
@@ -236,7 +236,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Cirugías previas *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese las cirugías que ha tenido la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onSurgeriesChanged}
@@ -247,7 +247,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Tratamientos previos y evolución *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese los tratamientos anteriores que ha tenido la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onTreatmentsChanged}
@@ -257,7 +257,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Sistema Respiratorio *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el estado del sistema respiratorio de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onRespiratoryChanged}
@@ -267,7 +267,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Sistema Digestivo *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el estado del sistema digestivo de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onDigestiveChanged}
@@ -277,7 +277,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Sistema Nervioso *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el estado del sistema nervioso de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onNervousChanged}
@@ -287,7 +287,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Diagnóstico presuntivo *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el diagnostivo presuntivo de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onDiagnosisChanged}
@@ -297,7 +297,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Pruebas paraclínicas *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese las pruebas paraclínicas de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onTestsChanged}
@@ -307,7 +307,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Plan terapéutico *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el plan terapéutico de la mascota a seguir"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onPlanChanged}
@@ -317,14 +317,14 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             <Text style={styles.text}>Observaciones *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese observaciones generales"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onObservationChanged}
                 value={observations}
             />
 
-
+<View style={{ height: 2, width: "100%", backgroundColor: "#cccccc", marginTop: 30 }} />
 
 
             <Text style={{ fontSize: 15, margin: 22, fontWeight: 'bold' }}>¿Dónde fue realizado? *</Text>

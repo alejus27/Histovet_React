@@ -18,15 +18,28 @@ const CreateHospitalization = ({ navigation, route }) => {
     const [apetite, onApetiteChanged] = useState('');
     const [urine, onUrineChanged] = useState('');
     const [fecal, onFecalChanged] = useState('');
-    const [medicine, onMedicineChanged] = useState('');
+
     const [medicine_quantity, onQuantityChanged] = useState('');
-    const [medicine_frequency, onFrequencyChanged] = useState('');
-    const [medicine_via, onViaChanged] = useState('');
+    const [medicine_quantity2, onQuantityChanged2] = useState('');
+    const [medicine_quantity3, onQuantityChanged3] = useState('');
+
+
+
     const [remark, onRemarkChanged] = useState('');
     const [vet_id, setVetId] = useState(null);
     const [vet_name, setVetName] = useState('');
     const [vet_street, setVetStreet] = useState(null);
     const [vet_city, setVetCity] = useState('');
+
+
+    const [med_id, setMedId] = useState(null);
+    const [med_name, setMedName] = useState('');
+
+    const [med_id2, setMedId2] = useState(null);
+    const [med_name2, setMedName2] = useState('');
+
+    const [med_id3, setMedId3] = useState(null);
+    const [med_name3, setMedName3] = useState('');
 
     const { petId, petName, ownerName } = route.params;
 
@@ -57,6 +70,39 @@ const CreateHospitalization = ({ navigation, route }) => {
         }
     };
 
+    const onSelectedMed = data => {
+        var count = 0;
+        for (const [key, value] of Object.entries(data)) {
+            for (const [key2, value2] of Object.entries(value)) {
+                if (count == 0) { setMedId(value2); }
+                else if (count == 1) { setMedName(value2); }
+                count = count + 1;
+            }
+        }
+    };
+
+    const onSelectedMed2 = data => {
+        var count = 0;
+        for (const [key, value] of Object.entries(data)) {
+            for (const [key2, value2] of Object.entries(value)) {
+                if (count == 0) { setMedId2(value2); }
+                else if (count == 1) { setMedName2(value2); }
+                count = count + 1;
+            }
+        }
+    };
+
+
+    const onSelectedMed3 = data => {
+        var count = 0;
+        for (const [key, value] of Object.entries(data)) {
+            for (const [key2, value2] of Object.entries(value)) {
+                if (count == 0) { setMedId3(value2); }
+                else if (count == 1) { setMedName3(value2); }
+                count = count + 1;
+            }
+        }
+    };
 
     const addHospitalizationPressed = async () => {
         const today = new Date();
@@ -82,10 +128,12 @@ const CreateHospitalization = ({ navigation, route }) => {
                 apetite: apetite,
                 urine: urine,
                 fecal: fecal,
-                medicine: medicine,
+                medicine: med_name,
                 medicine_quantity: medicine_quantity,
-                medicine_frequency: medicine_frequency,
-                medicine_via: medicine_via,
+                medicine2: med_name2,
+                medicine_quantity2: medicine_quantity2,
+                medicine3: med_name3,
+                medicine_quantity3: medicine_quantity3,
                 remark: remark,
             }
             );
@@ -94,43 +142,6 @@ const CreateHospitalization = ({ navigation, route }) => {
         catch (err) {
             console.log(`${err.message}`);
         }
-
-        {/*try {
-            const hospitalizationToInsert = {
-                owner_name: ownerName,
-                pet_name: petName,
-                pet_id: petId,
-                date: Timestamp.fromDate(today),
-                clinic: vet_name,
-
-
-                description: description,
-                prognosis: prognosis,
-                cardiac: cardiac,
-                respiratory: respiratory,
-                pulse: pulse,
-                temperature: temperature,
-                mucous: mucous,
-                tllc: tllc,
-                dehydration: dehydration,
-                apetite: apetite,
-                urine: urine,
-                fecal: fecal,
-                medicine: medicine,
-                medicine_quantity: medicine_quantity,
-                medicine_frequency: medicine_frequency,
-                medicine_via: medicine_via,
-                remark: remark,
-
-
-            };
-
-            const insertedHospitalization = await addDoc(collection(db, "hospitalization"), hospitalizationToInsert);
-            navigation.pop(2);
-        }
-        catch (err) {
-            console.log(`${err.message}`);
-        }*/}
 
     }
 
@@ -147,7 +158,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Diagnóstico *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese diagnóstico de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onDescriptionChanged}
@@ -157,7 +168,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Pronóstico *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese pronóstico de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onPrognosisChanged}
@@ -168,7 +179,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Frecuencia Cardiaca *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor de la frecuencia cardiaca de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onCardiacChanged}
@@ -178,7 +189,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Frecuencia Respiratoria *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor de la frecuencia respiratoria de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onRespiratoryChanged}
@@ -189,7 +200,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Pulso *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor del pulso de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onPulseChanged}
@@ -199,7 +210,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Temperatura *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor de la temperatura de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onTemperatureChange}
@@ -210,7 +221,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Mocusa *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor de la mucosa cardiaca de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onMucousChanged}
@@ -220,7 +231,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>TLLC (Tiempo de llenado capilar)*</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor del TLLC de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onTllcChanged}
@@ -230,7 +241,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Deshidratación*</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor de la deshidratación de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onDehydrationChanged}
@@ -240,7 +251,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Apetito *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor del apetito de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onApetiteChanged}
@@ -250,7 +261,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Estado de orina *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor del estado de la orina de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onUrineChanged}
@@ -260,7 +271,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             <Text style={styles.text}>Estado de materia fecal *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el valor del estado de la materia fecal de la mascota"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onFecalChanged}
@@ -269,49 +280,190 @@ const CreateHospitalization = ({ navigation, route }) => {
 
             <View style={{ height: 2, width: "100%", backgroundColor: "#cccccc", marginTop: 30 }} />
 
-            <Text style={styles.text}>Medicinas aplicadas *</Text>
-            <TextInput
-                style={styles.input}
-                placeholder=""
-                keyboardType="default"
-                autoCapitalize="none"
-                onChangeText={onMedicineChanged}
-                value={medicine}
-            />
 
-            <Text style={styles.text}>Cantidad *</Text>
+            <Text style={styles.text}>1. Medicina:</Text>
+            <Text style={{ fontSize: 15, margin: 22, fontWeight: 'bold' }}>Medicina aplicada</Text>
+            {med_id == null && (
+                <View style={{ alignItems: 'baseline', marginLeft: 22, marginRight: 22 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'stretch', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <FontAwesome5 name="pills" size={24} color="red" />
+                            <Text style={{ marginRight: 20, marginLeft: 20 }}>Ninguna medicina seleccionada</Text>
+                        </View>
+                        <Pressable onPress={() => {
+                            navigation.navigate("Medicine2Screen", { onSelect: onSelectedMed });
+                        }}>
+                            <AntDesign name="plus" size={20} color="black" style={{ alignSelf: 'flex-end' }} />
+                        </Pressable>
+                    </View>
+                </View>
+            )}
+
+            {!(med_id == null) && (
+                <View style={{ alignItems: 'baseline', marginLeft: 22, marginRight: 22 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 10, alignSelf: 'stretch', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <View style={styles.smallImgView}>
+                                <Image source={require('../assets/medicine.png')} style={styles.img} />
+                            </View>
+
+
+                            <View style={{ marginRight: 20, marginLeft: 20 }}>
+                                <Text style={{ fontWeight: 'bold' }}>{med_name}</Text>
+                            </View>
+
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'center', alignItems: 'center' }}>
+
+                            <Pressable onPress={() => {
+                                navigation.navigate("Medicine2Screen", { onSelect: onSelectedMed });
+                            }}>
+                                <MaterialIcons name="edit" size={24} color="black" style={{}} />
+                            </Pressable>
+                        </View>
+                    </View>
+                </View>
+            )}
+
+
+            <Text style={styles.text}>Dosis</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese la dosis de medicina aplicada"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onQuantityChanged}
                 value={medicine_quantity}
             />
-            <Text style={styles.text}>Frecuencia *</Text>
+
+
+            <View style={{ height: 2, width: "100%", backgroundColor: "#cccccc", marginTop: 30 }} />
+
+
+            <Text style={styles.text}>2. Medicina:</Text>
+            <Text style={{ fontSize: 15, margin: 22, fontWeight: 'bold' }}>Medicina aplicada</Text>
+            {med_id2 == null && (
+                <View style={{ alignItems: 'baseline', marginLeft: 22, marginRight: 22 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'stretch', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <FontAwesome5 name="pills" size={24} color="red" />
+                            <Text style={{ marginRight: 20, marginLeft: 20 }}>Ninguna medicina seleccionada</Text>
+                        </View>
+                        <Pressable onPress={() => {
+                            navigation.navigate("Medicine2Screen", { onSelect: onSelectedMed2 });
+                        }}>
+                            <AntDesign name="plus" size={20} color="black" style={{ alignSelf: 'flex-end' }} />
+                        </Pressable>
+                    </View>
+                </View>
+            )}
+
+            {!(med_id2 == null) && (
+                <View style={{ alignItems: 'baseline', marginLeft: 22, marginRight: 22 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 10, alignSelf: 'stretch', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <View style={styles.smallImgView}>
+                                <Image source={require('../assets/medicine.png')} style={styles.img} />
+                            </View>
+
+
+                            <View style={{ marginRight: 20, marginLeft: 20 }}>
+                                <Text style={{ fontWeight: 'bold' }}>{med_name2}</Text>
+                            </View>
+
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'center', alignItems: 'center' }}>
+
+                            <Pressable onPress={() => {
+                                navigation.navigate("Medicine2Screen", { onSelect: onSelectedMed2 });
+                            }}>
+                                <MaterialIcons name="edit" size={24} color="black" style={{}} />
+                            </Pressable>
+                        </View>
+                    </View>
+                </View>
+            )}
+
+
+            <Text style={styles.text}>Dosis</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese la dosis de medicina aplicada"
                 keyboardType="default"
                 autoCapitalize="none"
-                onChangeText={onFrequencyChanged}
-                value={medicine_frequency}
+                onChangeText={onQuantityChanged2}
+                value={medicine_quantity2}
             />
 
-            <Text style={styles.text}>Via de aplicación *</Text>
+
+
+
+            <View style={{ height: 2, width: "100%", backgroundColor: "#cccccc", marginTop: 30 }} />
+
+
+            <Text style={styles.text}>3. Medicina:</Text>
+
+            <Text style={{ fontSize: 15, margin: 22, fontWeight: 'bold' }}>Medicina aplicada</Text>
+            {med_id3 == null && (
+                <View style={{ alignItems: 'baseline', marginLeft: 22, marginRight: 22 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'stretch', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <FontAwesome5 name="pills" size={24} color="red" />
+                            <Text style={{ marginRight: 20, marginLeft: 20 }}>Ninguna medicina seleccionada</Text>
+                        </View>
+                        <Pressable onPress={() => {
+                            navigation.navigate("Medicine2Screen", { onSelect: onSelectedMed3 });
+                        }}>
+                            <AntDesign name="plus" size={20} color="black" style={{ alignSelf: 'flex-end' }} />
+                        </Pressable>
+                    </View>
+                </View>
+            )}
+
+            {!(med_id3 == null) && (
+                <View style={{ alignItems: 'baseline', marginLeft: 22, marginRight: 22 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 10, alignSelf: 'stretch', alignItems: 'center' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <View style={styles.smallImgView}>
+                                <Image source={require('../assets/medicine.png')} style={styles.img} />
+                            </View>
+
+
+                            <View style={{ marginRight: 20, marginLeft: 20 }}>
+                                <Text style={{ fontWeight: 'bold' }}>{med_name3}</Text>
+                            </View>
+
+                        </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'center', alignItems: 'center' }}>
+
+                            <Pressable onPress={() => {
+                                navigation.navigate("Medicine2Screen", { onSelect: onSelectedMed3 });
+                            }}>
+                                <MaterialIcons name="edit" size={24} color="black" style={{}} />
+                            </Pressable>
+                        </View>
+                    </View>
+                </View>
+            )}
+
+
+            <Text style={styles.text}>Dosis</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese la dosis de medicina aplicada"
                 keyboardType="default"
                 autoCapitalize="none"
-                onChangeText={onViaChanged}
-                value={medicine_via}
+                onChangeText={onQuantityChanged3}
+                value={medicine_quantity3}
             />
+
+
+            <View style={{ height: 2, width: "100%", backgroundColor: "#cccccc", marginTop: 30 }} />
 
             <Text style={styles.text}>Observaciones *</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese observaciones generales del procedimiento"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onRemarkChanged}
@@ -319,8 +471,7 @@ const CreateHospitalization = ({ navigation, route }) => {
             />
 
 
-
-
+            <View style={{ height: 2, width: "100%", backgroundColor: "#cccccc", marginTop: 30 }} />
 
             <Text style={{ fontSize: 15, margin: 22, fontWeight: 'bold' }}>¿Dónde fue realizado? *</Text>
             {vet_id == null && (
@@ -339,6 +490,8 @@ const CreateHospitalization = ({ navigation, route }) => {
                 </View>
             )}
 
+
+
             {!(vet_id == null) && (
                 <View style={{ alignItems: 'baseline', marginLeft: 22, marginRight: 22 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginRight: 10, alignSelf: 'stretch', alignItems: 'center' }}>
@@ -347,22 +500,13 @@ const CreateHospitalization = ({ navigation, route }) => {
                                 <Image source={require('../assets/physical-examination-1.png')} style={styles.img} />
                             </View>
 
-                            {!(vet_street == null) && (
-                                <View style={{ marginRight: 20, marginLeft: 20 }}>
-                                    <Text style={{ fontWeight: 'bold' }}>{vet_name}</Text>
-                                    <Text>{vet_street}</Text>
-                                    <Text>{vet_city}</Text>
-                                </View>
-                            )}
+                            <View style={{ marginRight: 20, marginLeft: 20 }}>
+                                <Text style={{ fontWeight: 'bold' }}>{vet_name}</Text>
+                            </View>
 
-                            {vet_street == null && (
-                                <View style={{ marginRight: 20, marginLeft: 20 }}>
-                                    <Text style={{ fontWeight: 'bold' }}>{vet_name}</Text>
-                                </View>
-                            )}
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignSelf: 'center', alignItems: 'center' }}>
-                            <FontAwesome name="trash" size={24} color="black" style={{ marginRight: 20 }} />
+
                             <Pressable onPress={() => {
                                 navigation.navigate("VetsScreen", { onSelect: onSelectedVet });
                             }}>

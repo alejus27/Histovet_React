@@ -21,7 +21,7 @@ const PetProfileScreen = ({ navigation, route }) => {
 
     useEffect(() => {
         navigation.setOptions({
-            title: 'MASCOTA',
+            title: 'Mascota',
             headerRight: () => (
                 <Pressable onPress={() => {
                     navigation.navigate("PetSettingScreen", { pet: pet });
@@ -36,6 +36,7 @@ const PetProfileScreen = ({ navigation, route }) => {
         async function getPetData() {
             const docRef = doc(db, "pets", pet);
             const pet_data = await getDoc(docRef);
+            
             setPetName(pet_data.data().name);
             setPetBirthday(pet_data.data().birthday);
             getOwnerName(pet_data.data().owner);

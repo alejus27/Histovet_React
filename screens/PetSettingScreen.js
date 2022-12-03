@@ -127,9 +127,6 @@ const PetSettingScreen = (props) => {
                 </View>
                 <View style={{flex:1, marginLeft:10}}>
                     <Text style={{fontWeight:'bold', fontSize:17}}>{pet_name}</Text>
-                    <Text style={{color:'dimgray', fontWeight:'bold'}}>Age: 
-                        <Text style={{color:'gray', fontWeight:'normal'}}>{getAge(pet_birthday)}</Text>
-                    </Text>
                     <Text style={{color:'dimgray', fontWeight:'bold'}}>Owner: 
                         <Text style={{color:'gray', fontWeight:'normal'}}> {ownerName}</Text>
                     </Text>
@@ -147,7 +144,7 @@ const PetSettingScreen = (props) => {
                 </View>
             )}
 
-            <Text style={{alignSelf:'center', fontWeight:'bold', fontSize:16, marginBottom:20, marginTop:20}}>Settings</Text>
+            <Text style={{alignSelf:'center', fontWeight:'bold', fontSize:16, marginBottom:20, marginTop:20}}>OPCIONES</Text>
             
             { isOwner && (
                 <View>
@@ -164,7 +161,7 @@ const PetSettingScreen = (props) => {
                 </View>
             )}
             <Pressable onPress={ () => {props.navigation.navigate('DeletePetScreen', {pet:pet, petDoc:petDoc})}}>
-                <Text style={styles.pressableStyle}>REMOVE PET</Text>
+                <Text style={styles.pressableStyle}>ELIMINAR MASCOTA</Text>
             </Pressable>
         </SafeAreaView>
     );

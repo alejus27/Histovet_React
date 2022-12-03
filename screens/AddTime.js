@@ -2,11 +2,20 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, Text, Pressable, TextInput } from 'react-native';
 import { db } from "../FirebaseApp";
 import { collection, query, where, getDocs, setDoc, doc, addDoc } from "firebase/firestore";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from 'moment';
 
 const AddTime = ({ navigation, route }) => {
-    const [time, onTimeChanged] = useState('');
 
-    const { vet_name } = route.params;
+    const [startDate, setStartDate] = useState(new Date());
+    const [startDate2, setStartDate2] = useState(new Date());
+
+    //const [nameProfile, setNameProfile] = useState('');
+
+    const { u_id } = route.params;
+
+
 
     const addMedicinePressed = async () => {
 
@@ -16,15 +25,22 @@ const AddTime = ({ navigation, route }) => {
 
         // add new vet to db
 
-        const newDoc = doc(collection(db, "medicine"));
+
+        const ref = query(collection(db, "profiles"), where("userId", "==", u_id));
+        const querySnapshot = await getDocs(ref);
+        const profile_name = querySnapshot.docs[0].data().first_name;
+
+
+        const newDoc = doc(collection(db, "attention_ schedule"));
         try {
             await setDoc(newDoc, {
                 id: newDoc.id,
-                first_name: name,
-                time: time
+                doctor_id:u_id,
+                first_name: profile_name,
+                time: moment(startDate).format('h:mm a') + " - " + moment(startDate2).format('h:mm a')
             }
             );
-            navigation.pop(2);
+            navigation.pop(1);
 
         } catch (err) {
             console.log(`${err.message}`);
@@ -44,26 +60,44 @@ const AddTime = ({ navigation, route }) => {
     }
 
     return (
-        <SafeAreaView style={{ backgroundColor: '#fff', justifyContent: 'space-between' }}>
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Rango de horas de atención (Entrada-Salida)</Text>
-            <TextInput
-                style={styles.input}
-                placeholder=""
-                keyboardType="default"
-                autoCapitalize="none"
-                onChangeText={onTimeChanged}
-                value={time}
+        <SafeAreaView style={styles.area}>
+
+            <Text style={{ marginBottom: 20, marginTop: 30, fontWeight: 'bold', fontSize: 16, alignSelf: 'center', }}>Horario de atención</Text>
+
+            <Text style={{ fontSize: 16 }}>Inicio de cita médica:</Text>
+    
+            <DatePicker
+                wrapperClassName="datePicker"
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={60}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
+            />
+
+            <Text style={{ marginTop: 30, fontSize: 16 }}>Fin de cita médica:</Text>
+            <DatePicker
+                selected={startDate2}
+                onChange={(date) => setStartDate2(date)}
+                showTimeSelect
+                showTimeSelectOnly
+                timeIntervals={60}
+                timeCaption="Time"
+                dateFormat="h:mm aa"
             />
 
 
             <Pressable onPress={() => { addMedicinePressed() }}>
-                <Text style={styles.pressableStyle}>REGISTRAR NUEVO DE RANGO DE ATENCIÓN</Text>
+                <Text style={styles.pressableStyle}>REGISTRAR NUEVO HORARIO</Text>
             </Pressable>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+
     input: {
         alignSelf: 'center',
         height: 45,
@@ -85,12 +119,24 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         marginLeft: 22,
         marginRight: 22,
-        marginTop: 22,
+        marginTop: 30,
+        marginBottom: 30,
         fontSize: 15,
         padding: 15,
         width: '90%',
         fontWeight: 'bold'
     },
+    area: {
+        marginLeft: 100,
+        marginRight: 100,
+        marginTop: 35,
+        marginBottom: 35,
+        borderColor: '#335C67',
+        borderWidth: 2,
+        backgroundColor: '#fff',
+        alignSelf: 'center'
+    },
+    
 });
 
 export default AddTime;

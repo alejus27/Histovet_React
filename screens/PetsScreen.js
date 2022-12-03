@@ -17,6 +17,8 @@ const PetsScreen = ({ navigation }) => {
     const [usersPets, setUsersPets] = useState([]);
     const [usersCaregiving, setUsersCaregiving] = useState([]);
 
+
+
     const isFocused = useIsFocused();
 
     useEffect(() => {
@@ -29,18 +31,22 @@ const PetsScreen = ({ navigation }) => {
                         <Ionicons name="settings-sharp" size={24} color='#335C67' style={{ marginRight: 15 }} />
                     </Pressable>
                     <Pressable onPress={() => {
+
+                        try {
+                            signOut(auth);
+                            navigation.reset({ index: 0, routes: [{ name: 'AuthenticationNavigator' }], key: null });
+                        } catch (err) {
+                            console.log(`Logout failed: ${err.message}`);
+                        }
                         Alert.alert('Logout', 'Are you sure you want to logout?', [
                             { text: 'NO', onPress: () => console.log('NO Pressed'), style: 'cancel' },
                             {
                                 text: 'YES', onPress: async () => {
-                                    try {
-                                        await signOut(auth);
-                                        navigation.reset({ index: 0, routes: [{ name: 'AuthenticationNavigator' }], key: null });
-                                    } catch (err) {
-                                        console.log(`Logout failed: ${err.message}`);
-                                    }
+
                                 }
                             },
+
+
                         ]);
                     }}>
                         <MaterialIcons name="logout" size={24} color='#335C67' />
@@ -63,6 +69,7 @@ const PetsScreen = ({ navigation }) => {
     }, [])
 
     useEffect(() => {
+
         getUserPets();
         getUserCaregiving();
     }, [loggedInUser, isFocused])
@@ -94,6 +101,7 @@ const PetsScreen = ({ navigation }) => {
             console.log("Getting User's Pets: " + err.message);
         }
     }
+
 
     const getUserCaregiving = async () => {
         var index = 0;
@@ -195,7 +203,7 @@ const PetsScreen = ({ navigation }) => {
                     <View>
                         <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
                             <Text style={{ marginLeft: 20, fontSize: 18 }}>{item.value.data().name}</Text>
-                            
+
                         </View>
                         <Text style={{ marginLeft: 20, color: 'dimgray' }}>Edad:
                             <Text style={{ color: 'gray' }}> {item.value.data().age}</Text>
@@ -237,7 +245,7 @@ const PetsScreen = ({ navigation }) => {
                 </View>
 
                 <Pressable onPress={() => {
-                    navigation.navigate("AppointmentScreen", { user: loggedInUser.uid })
+                    navigation.navigate("AppointmentScreen", { u_id: loggedInUser.uid })
                 }}>
                     <Text style={styles.pressableStyle}>CITAS MÉDICAS</Text>
                 </Pressable>
@@ -252,12 +260,12 @@ const PetsScreen = ({ navigation }) => {
                     navigation.navigate("MedicineScreen", { user: loggedInUser.uid })
                 }}>
                     <Text style={styles.pressableStyle}>MEDICAMENTOS</Text>
-                    <View style={{marginBottom: 30 }}>
+                    <View style={{ marginBottom: 30 }}>
 
                     </View>
                 </Pressable>
 
-              
+
 
             </View>
 

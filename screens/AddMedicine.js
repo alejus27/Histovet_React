@@ -50,48 +50,50 @@ const AddMedicine = ({ navigation, route }) => {
     }
 
     return (
-        <SafeAreaView style={{ backgroundColor: '#fff', justifyContent: 'space-between' }}>
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Nombre</Text>
+        <SafeAreaView style={styles.area}>
+            <Text style={styles.text}>Nombre</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese nombre del medicamento"
                 keyboardType="default"
                 autoCapitalize="none"
+                maxLength={10}
+                
                 onChangeText={onNameChanged}
                 value={name}
             />
 
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Descripción</Text>
+            <Text style={styles.text}>Descripción</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese descripción del medicamento"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onDescriptionChanged}
                 value={description}
             />
 
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Grupo</Text>
+            <Text style={styles.text}>Grupo</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
+                placeholder="Ingrese el grupo del medicamento"
                 keyboardType="default"
                 autoCapitalize="none"
                 onChangeText={onGroupChanged}
                 value={group}
             />
 
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Precio</Text>
+            <Text style={styles.text}>Precio</Text>
             <TextInput
                 style={styles.input}
-                placeholder=""
-                keyboardType="default"
+                placeholder="Ingrese el precio del medicamento"
+                keyboardType="numeric"
                 autoCapitalize="none"
                 onChangeText={onPrecioChanged}
                 value={Number(precio)}
             />
 
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Fecha Vencimiento</Text>
+            <Text style={styles.text}>Fecha Vencimiento</Text>
             <TextInput
                 style={styles.input}
                 placeholder="YYYY-MM-DD"
@@ -131,8 +133,26 @@ const styles = StyleSheet.create({
         marginRight: 22,
         marginTop: 22,
         fontSize: 15,
+        marginBottom: 35,
         padding: 15,
         width: '90%',
+        fontWeight: 'bold'
+    },
+    area: {
+        marginLeft: 100,
+        marginRight: 100,
+        marginTop: 35,
+        marginBottom: 35,
+        borderColor: '#335C67',
+        borderWidth: 2,
+        backgroundColor: '#fff',
+        justifyContent: 'space-between'
+    },
+    text: {
+        marginBottom: 5,
+        marginLeft: 22,
+        marginTop: 30,
+        fontSize: 15,
         fontWeight: 'bold'
     },
 });

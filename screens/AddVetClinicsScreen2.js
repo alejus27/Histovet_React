@@ -21,8 +21,8 @@ const AddVetClinicsScreen2 = ({ navigation, route }) => {
     }
 
     return (
-        <SafeAreaView style={{ backgroundColor: '#fff', justifyContent: 'space-between' }}>
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Nombre</Text>
+        <SafeAreaView  style={styles.area}>
+            <Text style={styles.text}>Nombre</Text>
             <TextInput
                 style={styles.input}
                 placeholder=""
@@ -31,7 +31,7 @@ const AddVetClinicsScreen2 = ({ navigation, route }) => {
                 onChangeText={onNameChanged}
                 value={name}
             />
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Dirección</Text>
+            <Text style={styles.text}>Dirección</Text>
             <TextInput
                 style={styles.input}
                 placeholder=""
@@ -40,7 +40,7 @@ const AddVetClinicsScreen2 = ({ navigation, route }) => {
                 onChangeText={onStreetChanged}
                 value={street}
             />
-            <Text style={{ marginBottom: 5, marginLeft: 22, marginTop: 30 }}>Ciudad</Text>
+            <Text style={styles.text}>Ciudad</Text>
             <TextInput
                 style={styles.input}
                 placeholder=""
@@ -50,7 +50,7 @@ const AddVetClinicsScreen2 = ({ navigation, route }) => {
                 value={city}
             />
             <Pressable onPress={() => { addVetPressed() }}>
-                <Text style={styles.pressableStyle}>Registrar Veterinaria</Text>
+                <Text style={styles.pressableStyle}>REGISTRAR VETERINARIA</Text>
             </Pressable>
         </SafeAreaView>
     );
@@ -79,9 +79,27 @@ const styles = StyleSheet.create({
         marginLeft: 22,
         marginRight: 22,
         marginTop: 22,
+        marginBottom: 20,
         fontSize: 15,
         padding: 15,
         width: '90%',
+        fontWeight: 'bold'
+    },
+    area: {
+        marginLeft: 100,
+        marginRight: 100,
+        marginTop: 35,
+        marginBottom: 35,
+        borderColor: '#335C67',
+        borderWidth: 2,
+        backgroundColor: '#fff',
+        justifyContent: 'space-between'
+    },
+    text: {
+        marginBottom: 5,
+        marginLeft: 22,
+        marginTop: 30,
+        fontSize: 15,
         fontWeight: 'bold'
     },
 });

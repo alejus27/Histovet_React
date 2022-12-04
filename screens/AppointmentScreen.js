@@ -141,11 +141,11 @@ const styles = StyleSheet.create({
     },
     img: {
         marginLeft: 22,
-        width: 60,
-        height: 60,
-        borderRadius: '80%',
-        borderWidth: 1,
-        borderColor: 'black',
+        width: 65,
+        height: 65,
+        borderRadius: '20%',
+        borderWidth: 2,
+        borderColor: '#335C67',
     },
     textInputStyle: {
         height: 40,

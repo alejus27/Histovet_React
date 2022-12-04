@@ -47,7 +47,7 @@ const MedicineScreen = ({navigation, route}) => {
         }>
             <View style={styles.vet}>
                 <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center', flexShrink:1}}>
-                    <Image source={require('../assets/medicine_logo.png')} style={styles.img}/>
+                    <Image source={item.data().record} style={styles.img}/>
                     <View style={{flexDirection:'column', marginLeft:20, alignItems:'baseline', flexShrink:1}}>
                         <Text style={{fontSize:18, fontWeight:'bold'}}>{item.data().name+" $"+item.data().precio}</Text>
                         <Text style={{fontSize:14}}>{item.data().description}</Text>
@@ -57,7 +57,7 @@ const MedicineScreen = ({navigation, route}) => {
                     <Pressable onPress={() => {
                         deleteRecord(item.id)
                     }}>
-                        <MaterialCommunityIcons  name="trash-can" size={24} color='#335C67' />
+                        <MaterialCommunityIcons  name="archive-cancel" paddingRight={15} size={24} color='#335C67' />
 
                     </Pressable>
                     
@@ -133,11 +133,11 @@ const styles = StyleSheet.create({
     },
     img: {
         marginLeft: 22,
-        width: 60,
-        height: 60,
-        borderRadius: '100%',
-        borderWidth: 1,
-        borderColor: 'black',
+        width: 65,
+        height: 65,
+        borderRadius: '20%',
+        borderWidth: 2,
+        borderColor: '#335C67',
     },
     textInputStyle: {
       height: 40,

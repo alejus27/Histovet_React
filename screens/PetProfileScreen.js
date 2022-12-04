@@ -267,20 +267,20 @@ const styles = StyleSheet.create({
     },
     pressableStyle: {
         alignSelf: 'center',
-        textAlign: 'center',
+       textAlign: 'center',
         backgroundColor: '#335C67',
         color: '#fff',
-        // backgroundColor: '#ffffff',
-        // color: '#335C67',
-        // borderColor: '#335C67',
-        // borderStyle: 'solid',
-        // borderWidth: 1,
+        //backgroundColor: '#ffffff',
+        //color: '#335C67',
+        //borderColor: '#335C67',
+        //borderStyle: 
+        //borderWidth: 1,
         marginTop: 10,
         fontSize: 15,
         padding: 15,
         width: '30%',
         fontWeight: 'bold',
-        borderRadius: 100
+        borderRadius: 100,
     },
     pressableStyle2: {
         alignSelf: 'center',

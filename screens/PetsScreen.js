@@ -17,7 +17,7 @@ const PetsScreen = ({ navigation }) => {
     const [usersPets, setUsersPets] = useState([]);
     const [usersCaregiving, setUsersCaregiving] = useState([]);
 
-
+    const [setVet] = useState("");
 
     const isFocused = useIsFocused();
 
@@ -89,6 +89,10 @@ const PetsScreen = ({ navigation }) => {
             const clinicquerySnapshot = await getDocs(clinicRef);
             const clinicProfile = clinicquerySnapshot.docs[0].data().clinic;
 
+            //setVet=clinicProfile;
+           
+          
+
             const docRef = query(collection(db, "pets"), where("clinic", "==", clinicProfile));
             const querySnapshot = await getDocs(docRef);
             const documents = querySnapshot.docs;
@@ -100,6 +104,7 @@ const PetsScreen = ({ navigation }) => {
         } catch (err) {
             console.log("Getting User's Pets: " + err.message);
         }
+
     }
 
 
@@ -197,8 +202,8 @@ const PetsScreen = ({ navigation }) => {
         }>
             <View style={styles.pet}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <View style={styles.imgView}>
-                        <Image source={require('../assets/paw.png')} style={styles.img} />
+                    <View >
+                        <Image source={item.value.data().record} style={styles.img} />
                     </View>
                     <View>
                         <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
@@ -241,7 +246,7 @@ const PetsScreen = ({ navigation }) => {
             <View style={styles.container2}>
 
                 <View style={styles.imgView2}>
-                    <Image source={require('../assets/vet.png')} style={styles.img} />
+                    <Image source={require('../assets/vet.png')} style={styles.img2} />
                 </View>
 
                 <Pressable onPress={() => {
@@ -273,6 +278,7 @@ const PetsScreen = ({ navigation }) => {
 
 
                 <Text style={styles.pressableStyle2}>MASCOTAS</Text>
+                <Text style={styles.pressableStyle2}>{setVet}</Text>
 
                 <Searchbar placeholder="Search" onChangeText={(text) => searchFilterFunction(text)} value={search} style={styles.searchBar} />
                 {/*<Pressable onPress={ () => {
@@ -312,19 +318,28 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     img: {
-        width: '100%',
-        height: undefined,
-        aspectRatio: 1
+        marginLeft: 22,
+        width: 65,
+        height: 65,
+        borderRadius: '20%',
+        borderWidth: 2,
+        borderColor: '#335C67',
+    },
+    img2: {
+    
+        width: 65,
+        height: 65,
+
     },
     imgView: {
-        width: 60,
-        height: 60,
-        borderRadius: '100%',
-        borderWidth: 1,
-        borderColor: 'black',
-        alignSelf: 'center',
+
         marginLeft: 22,
-        padding: 8
+        width: 65,
+        height: 65,
+        borderRadius: '20%',
+        borderWidth: 2,
+        borderColor: '#335C67',
+
     },
 
     imgView2: {

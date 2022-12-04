@@ -69,7 +69,7 @@ const Medicine2Screen = ({ navigation, route }) => {
         }>
             <View style={styles.med}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexShrink: 1 }}>
-                    <Image source={require('../assets/physical-examination-1.png')} style={styles.img} />
+                    <Image source={item.data().record} style={styles.img} />
                     <View style={{ flexDirection: 'column', marginLeft: 20, alignItems: 'baseline', flexShrink: 1 }}>
                         <Text style={{ fontSize: 18, fontWeight: 'bold' }}>{item.data().name}</Text>
                         <Text style={{ fontSize: 14 }}>{item.data().description}</Text>
@@ -145,11 +145,11 @@ const styles = StyleSheet.create({
     },
     img: {
         marginLeft: 22,
-        width: 60,
-        height: 60,
-        borderRadius: '100%',
-        borderWidth: 1,
-        borderColor: 'black',
+        width: 65,
+        height: 65,
+        borderRadius: '20%',
+        borderWidth: 2,
+        borderColor: '#335C67',
     },
     textInputStyle: {
         height: 40,

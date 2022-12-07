@@ -245,7 +245,7 @@ const PetsScreen = ({ navigation }) => {
 
             <View style={styles.container2}>
 
-                <View style={styles.imgView2}>
+                <View>
                     <Image source={require('../assets/vet.png')} style={styles.img2} />
                 </View>
 
@@ -278,9 +278,8 @@ const PetsScreen = ({ navigation }) => {
 
 
                 <Text style={styles.pressableStyle2}>MASCOTAS</Text>
-                <Text style={styles.pressableStyle2}>{setVet}</Text>
-
-                <Searchbar placeholder="Search" onChangeText={(text) => searchFilterFunction(text)} value={search} style={styles.searchBar} />
+                
+                <Searchbar placeholder="Buscar" onChangeText={(text) => searchFilterFunction(text)} value={search} style={styles.searchBar} />
                 {/*<Pressable onPress={ () => {
                     navigation.navigate("CreatePetProfile", {user:loggedInUser.uid})
                 }}>
@@ -329,6 +328,10 @@ const styles = StyleSheet.create({
     
         width: 65,
         height: 65,
+        alignSelf: 'center',
+        marginTop: 15,
+        marginLeft: 15,
+        //marginBottom: 15,
 
     },
     imgView: {
@@ -362,9 +365,7 @@ const styles = StyleSheet.create({
         // borderColor: '#335C67',
         // borderStyle: 'solid',
         // borderWidth: 1,
-        marginLeft: 22,
-        marginRight: 22,
-        marginTop: 22,
+        marginTop: 15,
         fontSize: 15,
         padding: 15,
         width: '30%',
@@ -381,18 +382,21 @@ const styles = StyleSheet.create({
         // borderColor: '#335C67',
         // borderStyle: 'solid',
         // borderWidth: 1,
-        marginLeft: 22,
-        marginRight: 22,
-        marginTop: 22,
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 15,
         fontSize: 25,
         padding: 15,
         width: '100%',
         fontWeight: 'bold'
     },
     searchBar: {
+        marginTop: 10,
         width: '90%',
         alignSelf: 'center',
-        elevation: 1
+        elevation: 1,
+        borderWidth: 1,
+        borderColor: '#009688',
     }
 });
 

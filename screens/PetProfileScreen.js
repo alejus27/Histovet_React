@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { db } from '../FirebaseApp';
 import { collection, query, where, getDoc, doc, getDocs, orderBy } from "firebase/firestore";
 import { useIsFocused } from '@react-navigation/native';
+import image from "../assets/fondo2.jpg";
 
 const PetProfileScreen = ({ navigation, route }) => {
     const [pet_name, setPetName] = useState('');
@@ -36,7 +37,7 @@ const PetProfileScreen = ({ navigation, route }) => {
         async function getPetData() {
             const docRef = doc(db, "pets", pet);
             const pet_data = await getDoc(docRef);
-            
+
             setPetName(pet_data.data().name);
             setPetBirthday(pet_data.data().birthday);
             getOwnerName(pet_data.data().owner);
@@ -135,17 +136,23 @@ const PetProfileScreen = ({ navigation, route }) => {
 
     return (
         <SafeAreaView style={{ backgroundColor: '#fff', flex: 1 }}>
-            <View style={styles.mainView}>
-                <View style={styles.imgView}>
-                    <Image source={require('../assets/paw.png')} style={styles.img} />
+
+            <View style={styles.container2}>
+
+                <View style={styles.mainView}>
+                    <View style={styles.imgView}>
+                        <Image source={require('../assets/paw.png')} style={styles.img} />
+                    </View>
+                    <View style={{ flex: 1, marginLeft: 10 }}>
+                        <Text style={{  fontWeight: 'bold', fontSize: 18 }}>{pet_name}</Text>
+
+                        <Text style={{ fontWeight: 'normal', fontSize: 15 }}>Dueño:
+                            <Text style={{ fontWeight: 'normal' }}> {ownerName}</Text>
+                        </Text>
+                    </View>
                 </View>
-                <View style={{ flex: 1, marginLeft: 10 }}>
-                    <Text style={{ fontWeight: 'bold', fontSize: 17 }}>{pet_name}</Text>
-    
-                    <Text style={{ color: 'dimgray', fontWeight: 'bold' }}>Dueño:
-                        <Text style={{ color: 'gray', fontWeight: 'normal' }}> {ownerName}</Text>
-                    </Text>
-                </View>
+                <View style={{ marginBottom: 20 }}></View>
+
             </View>
 
             {caregivers.length != 0 && (
@@ -159,7 +166,7 @@ const PetProfileScreen = ({ navigation, route }) => {
                 </View>
             )}
 
-            <Text style={{ color: '#335C67', alignSelf: 'center', fontWeight: 'bold', fontSize: 20, marginBottom: 20, marginTop: 20 }}>REGISTROS MÉDICOS</Text>
+            <Text style={styles.pressableStyle4}>REGISTROS MÉDICOS</Text>
 
             <View style={styles.rowView}>
                 <MaterialCommunityIcons name="clipboard-text-clock" size={28} color="black" style={{ marginRight: 10 }} />
@@ -229,6 +236,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginTop: 22
     },
+    container2: {
+        backgroundImage: `url(${image})`,
+        //backgroundColor: '#335C67',
+
+    },
     rowView: {
         flexDirection: 'row',
         paddingLeft: 22,
@@ -267,7 +279,7 @@ const styles = StyleSheet.create({
     },
     pressableStyle: {
         alignSelf: 'center',
-       textAlign: 'center',
+        textAlign: 'center',
         backgroundColor: '#335C67',
         color: '#fff',
         //backgroundColor: '#ffffff',
@@ -315,6 +327,24 @@ const styles = StyleSheet.create({
         width: '30%',
         fontWeight: 'bold',
         borderRadius: 100
+    },
+    pressableStyle4: {
+        alignSelf: 'center',
+        textAlign: 'center',
+        //backgroundColor: '#335C67',
+        color: '#335C67',
+        // backgroundColor: '#ffffff',
+        // color: '#335C67',
+        // borderColor: '#335C67',
+        // borderStyle: 'solid',
+        // borderWidth: 1,
+        marginLeft: 15,
+        marginRight: 15,
+        marginTop: 15,
+        fontSize: 25,
+        padding: 15,
+        width: '100%',
+        fontWeight: 'bold'
     },
     deletePressable: {
         alignSelf: 'center',

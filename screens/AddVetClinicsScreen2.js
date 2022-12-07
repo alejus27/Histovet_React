@@ -102,6 +102,14 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: 'bold'
     },
+    searchBar: {
+        marginTop: 10,
+        width: '90%',
+        alignSelf: 'center',
+        elevation: 1,
+        borderWidth: 1,
+        borderColor: '#009688',
+    }
 });
 
 export default AddVetClinicsScreen2;

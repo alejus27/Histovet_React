@@ -4,6 +4,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { db } from "../FirebaseApp"
 import { collection, query, where, getDocs, orderBy, deleteDoc, doc } from "firebase/firestore";
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Searchbar } from 'react-native-paper';
 const AppointmentScreen = ({ navigation, route }) => {
     const [search, setSearch] = useState('');
     const [filteredDataSource, setFilteredDataSource] = useState([]);
@@ -101,12 +102,12 @@ const AppointmentScreen = ({ navigation, route }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <TextInput
-                style={styles.textInputStyle}
+            <Searchbar
+                style={styles.searchBar}
                 onChangeText={(text) => searchFilterFunction(text)}
                 value={search}
                 underlineColorAndroid="transparent"
-                placeholder="Search Here"
+                placeholder="Buscar"
             />
             <View style={styles.addVetView}>
                 <Text
@@ -169,6 +170,14 @@ const styles = StyleSheet.create({
     },
     addVetView: {
         padding: 10
+    },
+    searchBar: {
+        marginTop: 10,
+        width: '90%',
+        alignSelf: 'center',
+        elevation: 1,
+        borderWidth: 1,
+        borderColor: '#009688',
     }
 });
 

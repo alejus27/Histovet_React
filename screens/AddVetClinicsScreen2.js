@@ -17,7 +17,7 @@ const AddVetClinicsScreen2 = ({ navigation, route }) => {
         }
         const insertedClinic = await addDoc(collection(db, "vet_list"), vet);
 
-        navigation.pop(2);
+        navigation.pop(1);
     }
 
     return (
@@ -49,7 +49,8 @@ const AddVetClinicsScreen2 = ({ navigation, route }) => {
                 onChangeText={onCityChanged}
                 value={city}
             />
-            <Pressable onPress={() => { addVetPressed() }}>
+            <Pressable onPress={() => { addVetPressed() 
+            alert('Clinica veterinaria creada!');}}>
                 <Text style={styles.pressableStyle}>REGISTRAR VETERINARIA</Text>
             </Pressable>
         </SafeAreaView>

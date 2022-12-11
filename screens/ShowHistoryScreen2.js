@@ -11,13 +11,15 @@ const ShowHistoryScreen2 = ({ navigation, route }) => {
     const [records, setRecords] = useState([]);
     const [updated, setUpdated] = useState(false);
     const isFocused = useIsFocused();
+
     const { petId, petName } = route.params;
 
 
     useEffect(() => {
         setUpdated(false);
-        navigation.setOptions({ title: petName + ' - Historial Clinico' })
+        navigation.setOptions({ title: petName + ' - Versiones Historial Clinico' })
         getRecords();
+
     }, [isFocused, updated])
 
 
@@ -41,7 +43,7 @@ const ShowHistoryScreen2 = ({ navigation, route }) => {
                 onErrorChanged(err.message);
                 onHasErrorChanged(true);
             });
-        navigation.pop(2);
+        navigation.pop(1);
     }
 
 
@@ -56,7 +58,7 @@ const ShowHistoryScreen2 = ({ navigation, route }) => {
         )
     }
 
-    const renderItem = ({ item, index }) => (
+    const renderItem = ({ item }) => (
         <View style={styles.eachRow}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexShrink: 1 }}>
                 <MaterialCommunityIcons name="text-box-multiple" size={45} color="#335C67" />
@@ -68,7 +70,9 @@ const ShowHistoryScreen2 = ({ navigation, route }) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
                 <Pressable onPress={() => {
-                    navigation.navigate('EditClinicalHistory')
+                    console.log("item_id: "+item.id);
+                    //setHisID(item.id);
+                    navigation.navigate('EditClinicalHistory', {clinicalId:item.id})
 
                 }}>
                     <MaterialCommunityIcons name="eye" size={24} color='#335C67' />
@@ -76,6 +80,7 @@ const ShowHistoryScreen2 = ({ navigation, route }) => {
 
                 <Pressable onPress={() => {
                     deleteMedicalRecord(item.id)
+                    alert('Historia clinica eliminada!');
                 }}>
                     <MaterialCommunityIcons name="trash-can" size={24} color='#335C67' />
                 </Pressable>

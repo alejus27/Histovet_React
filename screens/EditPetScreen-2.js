@@ -55,7 +55,7 @@ const EditPetScreen_2 = ({navigation, route}) => {
         };
         try {
             updateDoc(docRef, updatedPetData);
-            navigation.pop(2);
+            navigation.pop(1);
         }
         catch (err) {
             console.log(`${err.message}`);

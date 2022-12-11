@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react';
 import { db } from '../FirebaseApp';
 import { collection, query, where, getDoc, doc, getDocs, orderBy } from "firebase/firestore";
 import { useIsFocused } from '@react-navigation/native';
-import image from "../assets/fondo2.jpg";
+import image from "../assets/fondo5.jpg";
 
 const PetProfileScreen = ({ navigation, route }) => {
     const [pet_name, setPetName] = useState('');
     const [pet_birthday, setPetBirthday] = useState('');
     const [caregivers, setCaregivers] = useState([]);
     const [ownerName, setOwnerName] = useState('');
+    const [petImg, setPetImg] = useState('');
     const [caregiversName, setCaregiversName] = useState([]);
     const [lastUpload, setLastUpload] = useState(null);
     const [lastUploadDate, setLastUploadDate] = useState("");
@@ -40,6 +41,7 @@ const PetProfileScreen = ({ navigation, route }) => {
 
             setPetName(pet_data.data().name);
             setPetBirthday(pet_data.data().birthday);
+            setPetImg(pet_data.data().record);
             getOwnerName(pet_data.data().owner);
         }
         getPetData();
@@ -135,18 +137,21 @@ const PetProfileScreen = ({ navigation, route }) => {
     )
 
     return (
-        <SafeAreaView style={{ backgroundColor: '#fff', flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: '#fff'}}>
+
+
+            
 
             <View style={styles.container2}>
 
                 <View style={styles.mainView}>
-                    <View style={styles.imgView}>
-                        <Image source={require('../assets/paw.png')} style={styles.img} />
-                    </View>
-                    <View style={{ flex: 1, marginLeft: 10 }}>
-                        <Text style={{  fontWeight: 'bold', fontSize: 18 }}>{pet_name}</Text>
 
-                        <Text style={{ fontWeight: 'normal', fontSize: 15 }}>Dueño:
+                    <Image source={petImg} style={styles.img} />
+
+                    <View style={{ flex: 1, marginLeft: 10 }}>
+                        <Text style={{ fontWeight: 'bold', fontSize: 19 }}>{pet_name}</Text>
+
+                        <Text style={{ fontWeight: 'bold', fontWeight: 'normal', fontSize: 16}}>Dueño:
                             <Text style={{ fontWeight: 'normal' }}> {ownerName}</Text>
                         </Text>
                     </View>
@@ -154,6 +159,8 @@ const PetProfileScreen = ({ navigation, route }) => {
                 <View style={{ marginBottom: 20 }}></View>
 
             </View>
+
+            <View style={{ height: 2, width: "100%", backgroundColor: "#fff" }} />
 
             {caregivers.length != 0 && (
                 <View style={{ paddingLeft: 22, paddingRight: 22, marginTop: 10 }}>
@@ -247,9 +254,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     img: {
-        width: '100%',
-        height: undefined,
-        aspectRatio: 1
+        marginLeft: 22,
+        width: 65,
+        height: 65,
+        borderRadius: '20%',
+        borderWidth: 2,
+        borderColor: '#335C67',
     },
     imgView: {
         width: 60,

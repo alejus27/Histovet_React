@@ -114,7 +114,7 @@ const EditAddressScreen = ({navigation, route}) => {
         <Pressable onPress={() => {
                 updateAddressPressed();
             }}>
-                <Text style={styles.PressableStyle}>UPDATE ADDRESS</Text>
+                <Text style={styles.PressableStyle}>ACTUALIZAR</Text>
         </Pressable>
 
 

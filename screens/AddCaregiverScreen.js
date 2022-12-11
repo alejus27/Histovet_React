@@ -50,7 +50,7 @@ const AddCaregiverScreen = ({navigation, route}) => {
                 user:caregiver
             };
             const insertedRecord = await addDoc(collection(db, "caregiving"), record);
-            navigation.pop(2);
+            navigation.pop(1);
         }
         catch (err) {
             console.log(`${err.message}`);

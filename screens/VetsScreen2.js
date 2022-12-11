@@ -58,6 +58,7 @@ const VetsScreen2 = ({ navigation, route }) => {
 
                     <Pressable onPress={() => {
                         deleteRecord(item.id)
+                        alert('Clinica veterinaria eliminada!');
                     }}>
                         <MaterialCommunityIcons name="store-remove" size={24} color='#335C67' />
                     </Pressable>
@@ -102,7 +103,7 @@ const VetsScreen2 = ({ navigation, route }) => {
                 onChangeText={(text) => searchFilterFunction(text)}
                 value={search}
                 underlineColorAndroid="transparent"
-                placeholder="Buscar"
+                placeholder="Buscar nombre de veterinaria"
             />
             <View style={styles.addVetView}>
                 <Text

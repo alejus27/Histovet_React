@@ -16,7 +16,7 @@ const ShowHospitalizationScreen = ({ navigation, route }) => {
 
     useEffect(() => {
         setUpdated(false);
-        navigation.setOptions({ title: petName + ' - Hospitalización' })
+        navigation.setOptions({ title: petName + ' - Versiones Hospitalización' })
         getRecords();
     }, [isFocused, updated])
 
@@ -42,7 +42,7 @@ const ShowHospitalizationScreen = ({ navigation, route }) => {
                 onErrorChanged(err.message);
                 onHasErrorChanged(true);
             });
-        navigation.pop(2);
+        navigation.pop(1);
     }
 
 
@@ -69,7 +69,7 @@ const ShowHospitalizationScreen = ({ navigation, route }) => {
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
 
                 <Pressable onPress={() => {
-                    navigation.navigate('Edit')
+                    navigation.navigate('EditHospitalization', {hisId:item.id})
 
                 }}>
                     <MaterialCommunityIcons name="eye" size={24} color='#335C67' />
@@ -77,6 +77,7 @@ const ShowHospitalizationScreen = ({ navigation, route }) => {
 
                 <Pressable onPress={() => {
                     deleteHospitalizationRecord(item.id)
+                    alert('Hospitalización eliminada!');
                 }}>
                     <MaterialCommunityIcons name="trash-can" size={24} color='#335C67' />
                 </Pressable>

@@ -23,7 +23,7 @@ const AppointmentScreen = ({ navigation, route }) => {
         try {
 
 
-            const docRef = query(collection(db, "appointment"), where("doctor", "==",u_id));
+            const docRef = query(collection(db, "appointment"), where("doctor", "==", u_id));
             const querySnapshot = await getDocs(docRef);
             const documents = querySnapshot.docs;
 
@@ -55,14 +55,18 @@ const AppointmentScreen = ({ navigation, route }) => {
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexShrink: 1 }}>
                     <Image source={require('../assets/app_logo.png')} style={styles.img} />
                     <View style={{ flexDirection: 'column', marginLeft: 20, alignItems: 'baseline', flexShrink: 1 }}>
-
-                        <Text style={{ fontSize: 14 }}>{item.data().vet_name}</Text>
+                        <Text style={{ fontSize: 14,  fontWeight: 'bold'}}>{"Paciente: "}</Text>
+                        <Text style={{ fontSize: 14 }}>{item.data().petName}</Text>
+                        <Text style={{ fontSize: 14, fontWeight: 'bold'}}>{"Dueño: "}</Text>
+                        <Text style={{ fontSize: 14 }}>{item.data().ownerName}</Text>
+                        <Text style={{ fontSize: 14, fontWeight: 'bold'}}>{"Fecha y hora: "}</Text>
                         <Text style={{ fontSize: 14 }}>{item.data().fecha}</Text>
                         <Text style={{ fontSize: 14 }}>{item.data().time}</Text>
                     </View>
 
                     <Pressable onPress={() => {
                         deleteRecord(item.id)
+                        alert('Cita médica completada!');
                     }}>
                         <MaterialCommunityIcons name="account-check" size={24} color='#008000' />
 
@@ -85,8 +89,8 @@ const AppointmentScreen = ({ navigation, route }) => {
         // Check if searched text is not blank
         if (text) {
             const newData = masterDataSource.filter(function (item) {
-                const itemData = item.data().name
-                    ? item.data().name.toUpperCase()
+                const itemData = item.data().petName
+                    ? item.data().petName.toUpperCase()
                     : ''.toUpperCase();
                 console.log("itemData is : " + itemData);
                 const textData = text.toUpperCase();
@@ -107,7 +111,7 @@ const AppointmentScreen = ({ navigation, route }) => {
                 onChangeText={(text) => searchFilterFunction(text)}
                 value={search}
                 underlineColorAndroid="transparent"
-                placeholder="Buscar"
+                placeholder="Buscar nombre de la mascota"
             />
             <View style={styles.addVetView}>
                 <Text

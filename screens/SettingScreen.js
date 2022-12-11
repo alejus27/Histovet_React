@@ -24,6 +24,8 @@ const SettingScreen = ({navigation, route}) => {
             const querySnapshot = await getDocs(docRef);
             const userProfile = querySnapshot.docs[0];
 
+            console.log(userProfile);
+
             setProfileToSend(userProfile.id);
             setProfileDoc(userProfile);
 

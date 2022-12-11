@@ -17,7 +17,7 @@ const DeleteCaregiverScreen = ({navigation, route}) => {
             onErrorChanged(err.message);
             onHasErrorChanged(true);
         });
-        navigation.pop(2);
+        navigation.pop(1);
     }
 
     return (

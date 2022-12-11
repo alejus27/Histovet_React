@@ -16,7 +16,7 @@ const ShowHistoryScreen = ({ navigation, route }) => {
 
     useEffect(() => {
         setUpdated(false);
-        navigation.setOptions({ title: petName + ' Historial Clinico' })
+        navigation.setOptions({ title: petName + ' Versiones Historial Clinico' })
         getRecords();
     }, [isFocused, updated])
 
@@ -93,6 +93,7 @@ const ShowHistoryScreen = ({ navigation, route }) => {
                 <Pressable onPress={() => {
 
                     deleteMedicalRecord(item.data().record, item.id);
+                    alert('Historia clinica eliminada!');
 
                 }}>
                     <MaterialCommunityIcons name="trash-can" size={24} color='#335C67' />

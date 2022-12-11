@@ -89,7 +89,8 @@ const AddTime = ({ navigation, route }) => {
             />
 
 
-            <Pressable onPress={() => { addMedicinePressed() }}>
+            <Pressable onPress={() => { addMedicinePressed()
+            alert('Horario de atención creado!'); }}>
                 <Text style={styles.pressableStyle}>REGISTRAR NUEVO HORARIO</Text>
             </Pressable>
         </SafeAreaView>

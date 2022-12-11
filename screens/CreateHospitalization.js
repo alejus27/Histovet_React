@@ -128,6 +128,7 @@ const CreateHospitalization = ({ navigation, route }) => {
                 apetite: apetite,
                 urine: urine,
                 fecal: fecal,
+                
                 medicine: med_name,
                 medicine_quantity: medicine_quantity,
                 medicine2: med_name2,
@@ -518,7 +519,9 @@ const CreateHospitalization = ({ navigation, route }) => {
             )}
 
 
-            <Pressable onPress={() => { addHospitalizationPressed() }}>
+            <Pressable onPress={() => { 
+                alert('Hospitalización creada!');
+                addHospitalizationPressed() }}>
                 <Text style={styles.pressableStyle}>AÑADIR</Text>
             </Pressable>
 

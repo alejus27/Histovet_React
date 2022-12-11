@@ -21,6 +21,8 @@ const PetsScreen = ({ navigation }) => {
 
     const isFocused = useIsFocused();
 
+    var max = true;
+
     useEffect(() => {
         navigation.setOptions({
             headerRight: () => (
@@ -90,8 +92,8 @@ const PetsScreen = ({ navigation }) => {
             const clinicProfile = clinicquerySnapshot.docs[0].data().clinic;
 
             //setVet=clinicProfile;
-           
-          
+
+
 
             const docRef = query(collection(db, "pets"), where("clinic", "==", clinicProfile));
             const querySnapshot = await getDocs(docRef);
@@ -197,6 +199,7 @@ const PetsScreen = ({ navigation }) => {
 
     const renderItem = ({ item }) => (
         <Pressable onPress={() => {
+            console.log(item.key);
             navigation.navigate("PetProfileScreen", { pet: item.key });
         }
         }>
@@ -249,17 +252,24 @@ const PetsScreen = ({ navigation }) => {
                     <Image source={require('../assets/vet.png')} style={styles.img2} />
                 </View>
 
+
                 <Pressable onPress={() => {
                     navigation.navigate("AppointmentScreen", { u_id: loggedInUser.uid })
                 }}>
                     <Text style={styles.pressableStyle}>CITAS MÉDICAS</Text>
                 </Pressable>
 
+
+
+
                 <Pressable onPress={() => {
                     navigation.navigate("VetsScreen2", { clinic: loggedInUser.uid })
                 }}>
-                    <Text style={styles.pressableStyle}>VETERINARIAS</Text>
+                    <Text style={styles.pressableStyle3}>VETERINARIAS</Text>
                 </Pressable>
+
+
+
 
                 <Pressable onPress={() => {
                     navigation.navigate("MedicineScreen", { user: loggedInUser.uid })
@@ -278,8 +288,8 @@ const PetsScreen = ({ navigation }) => {
 
 
                 <Text style={styles.pressableStyle2}>MASCOTAS</Text>
-                
-                <Searchbar placeholder="Buscar" onChangeText={(text) => searchFilterFunction(text)} value={search} style={styles.searchBar} />
+
+                <Searchbar placeholder="Buscar nombre de mascota" onChangeText={(text) => searchFilterFunction(text)} value={search} style={styles.searchBar} />
                 {/*<Pressable onPress={ () => {
                     navigation.navigate("CreatePetProfile", {user:loggedInUser.uid})
                 }}>
@@ -325,7 +335,7 @@ const styles = StyleSheet.create({
         borderColor: '#335C67',
     },
     img2: {
-    
+
         width: 65,
         height: 65,
         alignSelf: 'center',
@@ -356,6 +366,24 @@ const styles = StyleSheet.create({
         padding: 8
     },
     pressableStyle: {
+        alignSelf: 'center',
+        textAlign: 'center',
+        backgroundColor: '#335C67',
+        color: '#fff',
+        // backgroundColor: '#ffffff',
+        // color: '#335C67',
+        // borderColor: '#335C67',
+        // borderStyle: 'solid',
+        // borderWidth: 1,
+        marginTop: 15,
+        fontSize: 15,
+        padding: 15,
+        width: '30%',
+        fontWeight: 'bold',
+        borderRadius: 100,
+    },
+    pressableStyle3: {
+        //visibility: 'hidden',
         alignSelf: 'center',
         textAlign: 'center',
         backgroundColor: '#335C67',

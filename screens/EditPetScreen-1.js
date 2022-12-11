@@ -26,10 +26,12 @@ const EditPetScreen_1 = ({ navigation, route }) => {
 
     useEffect(() => {
         async function getPetData() {
+            console.log(pet);
             const docRef = doc(db, "pets", pet);
 
             onPetnameChanged(petDoc.data().name);
             onPetbirthdayChanged(petDoc.data().birthday);
+
             if (petDoc.data().regular_clinic != null) {
                 setVetId(petDoc.data().regular_clinic);
                 getClinic(petDoc.data().regular_clinic);

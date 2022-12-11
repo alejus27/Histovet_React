@@ -116,7 +116,7 @@ const VetsScreen = ({ navigation, route }) => {
                 onChangeText={(text) => searchFilterFunction(text)}
                 value={search}
                 underlineColorAndroid="transparent"
-                placeholder="Search Here"
+                placeholder="Buscar nombre de veterinaria"
             />
             {/*<View style={styles.addVetView}>
                 <Text  

@@ -126,7 +126,7 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             };
 
             const insertedClinicalHistory = await setDo(collection(db, "clinical_history"), clinicalHistoryToInsert);
-            navigation.pop(2);
+            navigation.pop(1);
         }
         catch (err) {
             console.log(`${err.message}`);
@@ -379,7 +379,9 @@ const CreateClinicalHistory = ({ navigation, route }) => {
             )}
 
 
-            <Pressable onPress={() => { addClinicalHistoryPressed() }}>
+            <Pressable onPress={() => { 
+                alert('Historia clinica creada!');
+                addClinicalHistoryPressed() }}>
                 <Text style={styles.pressableStyle}>AÑADIR</Text>
             </Pressable>
 

@@ -17,6 +17,23 @@ const AddMedicine = ({ navigation, route }) => {
     const [isLoading, setLoading] = useState(false);
 
 
+    const {userProfile, profileDoc} = route.params;
+
+    useEffect(() => {
+        async function getProfile() {
+            const docRef = doc(db, "medicines", userProfile);
+            setDocRef(docRef);
+            setUserProfileData(profileDoc.data());
+
+            onaddress1Changed(profileDoc.data().address_1);
+            onaddress2Changed(profileDoc.data().address_2);
+            onCityChanged(profileDoc.data().city);
+            onPostalcodeChanged(profileDoc.data().postal_code);
+        }
+        getProfile();
+    }, [])
+
+
     const _pickDocument = async () => {
         const file = await DocumentPicker.getDocumentAsync({
             // type: "*/*",
@@ -96,6 +113,29 @@ const AddMedicine = ({ navigation, route }) => {
 
     }
 
+    const updateAddressPressed = async () => {
+        const updatedProfileData = {
+            userId:userProfileData.userId,
+            email:userProfileData.email,
+            first_name:userProfileData.first_name,
+            last_name:userProfileData.last_name,
+            phone_number:userProfileData.phone_number,
+            address_1:newAddress1,
+            address_2:newAddress2,
+            city:newCity,
+            country:selectedCountry,
+            province:selectedProvince,
+            postal_code:postalcode
+        };
+        try {
+            updateDoc(docRef, updatedProfileData);
+            navigation.goBack();
+        }
+        catch (err) {
+            console.log(`${err.message}`);
+        }
+    }
+
     return (
 
         <SafeAreaView style={styles.area}>
@@ -162,8 +202,7 @@ const AddMedicine = ({ navigation, route }) => {
                 value={fechaVen}
             />
 
-            <Pressable onPress={() => { addDocumentPressed()
-            alert('Medicina creada!'); }}>
+            <Pressable onPress={() => { addDocumentPressed() }}>
                 <Text style={styles.pressableStyle}>REGISTRAR MEDICAMENTO</Text>
             </Pressable>
 

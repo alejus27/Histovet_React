@@ -10,6 +10,7 @@ import SettingScreen from './screens/SettingScreen';
 import EditProfileScreen from './screens/EditProfileScreen';
 import EditAddressScreen from './screens/EditAddressScreen';
 import EditClinicalHistory from './screens/EditClinicalHistory';
+import EditHospitalization from './screens/EditHospitalization';
 import MedicineScreen from './screens/MedicineScreen';
 import AddMedicine from './screens/AddMedicine';
 import ChangePasswordScreen from './screens/ChangePasswordScreen';
@@ -142,7 +143,8 @@ const MainNavigator = ({ navigation }) => {
             <Stack.Screen name="ShareMedicalRecordScreen" component={ShareMedicalRecordScreen} options={{ title: 'Share Medical Record' }} />
             <Stack.Screen name="EditPetScreen-1" component={EditPetScreen_1} options={{ title: 'Editar mascota' }} />
             <Stack.Screen name="EditPetScreen-2" component={EditPetScreen_2} options={{ title: 'Editar mascota' }} />
-            <Stack.Screen name="EditClinicalHistory" component={EditClinicalHistory} options={{ title: 'Editar historia clinica' }} />
+            <Stack.Screen name="EditClinicalHistory" component={EditClinicalHistory} options={{ title: 'Gestión historia clinica' }} />
+            <Stack.Screen name="EditHospitalization" component={EditHospitalization} options={{ title: 'Gestión hospitalización' }} />
             <Stack.Screen name="DeletePetScreen" component={DeletePetScreen} options={{ title: 'Borrar mascota' }} />
             <Stack.Screen name="AddMedicine" component={AddMedicine} options={{ title: 'Medicamentos' }} />
             <Stack.Screen name="MedicineScreen" component={MedicineScreen} options={{ title: 'Inventario' }} />

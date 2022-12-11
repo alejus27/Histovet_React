@@ -56,6 +56,7 @@ const MedicineScreen = ({navigation, route}) => {
 
                     <Pressable onPress={() => {
                         deleteRecord(item.id)
+                        alert('Medicina eliminada!');
                     }}>
                         <MaterialCommunityIcons  name="archive-cancel" paddingRight={15} size={24} color='#335C67' />
 
@@ -100,7 +101,7 @@ const MedicineScreen = ({navigation, route}) => {
                 onChangeText={(text) => searchFilterFunction(text)}
                 value={search}
                 underlineColorAndroid="transparent"
-                placeholder="Buscar"
+                placeholder="Buscar nombre de medicamento"
             />
             <View style={styles.addVetView}>
                 <Text  

@@ -34,7 +34,7 @@ const CreatePetProfile2Screen = ({navigation, route}) => {
                 neutering:castration,
             };
             const insertedPet = await addDoc(collection(db, "pets"), petToInsert);
-            navigation.pop(2);
+            navigation.pop(1);
         }
         catch (err) {
             console.log(`${err.message}`);
